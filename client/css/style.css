@@ -1,6 +1,65 @@
+/*************************
+        Fonts
+************************/
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+/******************************
+       Common Styles
+******************************/
 body, html {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+}
+.logo {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow:   1px 3px 10px rgba(255, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+  transition: all 0.3s ease-in-out;
+}
+.logo.on {
+  box-shadow:   1px 3px 10px rgba(255, 255, 255, 1);
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
+.logo > .pic {
+  width: 100px;
+  height: 32px;
+  margin: 10px 0 10px 0;
+  background-image: url('/imgs/hobbies.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  left: 5%;
+}
+.logo > .menu_icon {
+  width: 100px;
+  height: 32px;
+  background-image: url('/imgs/menu.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  right: 5%;
+  cursor: pointer;
+}
+.menu {
+  width: 100%;
+  height: 0;
+  transition: all 0.5s ease-in-out;
+}
+.menu.on {
+  height: 100px;
+  box-shadow: 1px 5px 7px rgba(255, 0, 0, 0.5);
+}
+.logo > .find {
+  font-family: 'Rubik', sans-serif;
+}
+.logo > .find > span {
+  margin: 10px;
 }

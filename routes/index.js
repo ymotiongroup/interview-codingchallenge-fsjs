@@ -9,7 +9,7 @@ var db = mongoose.connection;
 
 router.get('/', (req, res) => {
     res.render('index', {
-      brand: 'Itexico Test',
+      title: 'My Hobbies',
       css: '/css/style.css',
       src: '/bower_components/requirejs/require.js',
       req: '/require/config.js'

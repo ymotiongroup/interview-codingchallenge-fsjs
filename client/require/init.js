@@ -1,8 +1,9 @@
 define(['jquery'],function($){
 
-  /* Setting Variable */
-  $(document).ready(function(){
-    alert('ready');
-  });
+ $('.menu_icon').on('click',function(){
+  $('.menu').toggleClass('on');
+  $('.logo').toggleClass('on');
+ });
+
 
 });
