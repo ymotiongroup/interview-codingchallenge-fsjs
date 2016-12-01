@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    meta(name="viewport", content="width=device-width")
+    link(rel="icon", href="/client/imgs/icon/icon.ico")
+    title= title
+  body
+    header
+      .logo
+        .logo
+        h2 #{brand} 
+      i &#xe90b;
+    .menu
+    block content
+   footer
+    link(rel='stylesheet', href='#{css}', type='text/css')
+    script(data-main="#{req}" src="#{src}" defer) 

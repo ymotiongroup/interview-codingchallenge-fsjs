@@ -42,66 +42,42 @@ Ivan
 
 *****************************************************/
 const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const path = require('path');
-const Hobbie = require('./models/hobbies');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const index = require('./routes/index');
+const app = express();
 
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(express.static(path.join(__dirname, 'client')));
+
+app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'client')));
+app.use(favicon(path.join(__dirname, 'client', 'imgs/favicon.ico')));
+app.use('/', index);
 
-mongoose.connect('mongodb://localhost/hobbies');
-var db = mongoose.connection;
-
-app.get('/', (req, res) => {
-    res.send('hola');
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-// Getting Info
-app.get('/api/hobbies', (req, res) => {
-	Hobbie.getHobbies((err, hobbie) => {
-		if(err){
-			throw err;
-		}
-		res.json(hobbie);
-	});
-});
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-// Adding Info
-app.post('/api/hobbies', (req, res) => {
-	var hobbie = req.body;
-	Hobbie.addHobbie(hobbie, (err, genre) => {
-		if(err){
-			throw err;
-		}
-		res.json(hobbie);
-	});
-});
-
-// Update Info
-app.put('/api/hobbies/:_id', (req, res) => {
-	var id = req.params._id;
-	var hobbie = req.body;
-	Hobbie.updateHobbie(id, hobbie, {}, (err, hobbie) => {
-		if(err){
-			throw err;
-		}
-		res.json(hobbie);
-	});
-});
-
-// Delete Record
-app.delete('/api/hobbies/:_id', (req, res) => {
-	var id = req.params._id;
-	Hobbie.removeHobbie(id, (err, genre) => {
-		if(err){
-			throw err;
-		}
-		res.json(genre);
-	});
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
 
