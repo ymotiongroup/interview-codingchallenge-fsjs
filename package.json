@@ -1,0 +1,33 @@
+{
+  "name": "itexico",
+  "version": "1.0.0",
+  "description": "itexico test development ",
+  "main": "app.js",
+  "private": true,
+  "scripts": {
+    "test": "none"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jade": "^1.11.0",
+    "mongoose": "^4.7.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "author": "Ivan Rodriguez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itexico/interview-codingchallenge-fsjs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itexico/interview-codingchallenge-fsjs.git"
+  },
+  "keywords": [
+    "itexico",
+    "test"
+  ]
+}
