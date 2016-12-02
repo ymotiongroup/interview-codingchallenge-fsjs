@@ -1,9 +1,4 @@
-define(['jquery'],function($){
-
- $('.menu_icon').on('click',function(){
-  $('.menu').toggleClass('on');
-  $('.logo').toggleClass('on');
- });
-
-
+define(['jquery','events','ajax'],function($,events,_ajax){
+  events.toggleClass('.menu_icon','click','.menu','on',true,'.logo');
+  _ajax.info();
 });
