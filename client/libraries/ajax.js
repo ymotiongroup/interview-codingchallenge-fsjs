@@ -11,19 +11,28 @@ define('ajax',['jquery','render'],function($,_ren){
       });
     };
 
-    /*
-    $.ajax({
-        url: '/script.cgi',
-        type: 'DELETE',
-         success: function(result) {
-        // Do something with the result
-        }
-    });
+    let _reload = () => {
+      $.get('/api/hobbies/',function(data){
+        _ren.reload(data);
+      });
+    }
 
-    */
+    let updating = (id) => {
+      $.ajax({
+          url: '/api/hobbies/' + id,
+          type: 'PUT',
+          contentType: 'application/json',
+          data: '{ "hobbie": "Put Hobbie","hobbie_type": "put Hobbie Type" }',
+           success: function(result) {
+              _ajax.reload()
+          }
+      });
+    }
 
     return {
-      info: get
+      info: get,
+      update: updating,
+      reload: _reload
     }
 
   })();

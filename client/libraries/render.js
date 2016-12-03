@@ -9,7 +9,6 @@ define('render',['jquery','ajax'],function($,_ajax){
       let config = {
         parent:'.write'
       }
-      console.log(data);
       for(var i in data){
         let html = `
           <div class="hobbies">
@@ -19,7 +18,7 @@ define('render',['jquery','ajax'],function($,_ajax){
             <i>${data[i]._id}</i>
             </div>
             <div>
-              <div class="update"></div>
+              <div class="update" id="${data[i]._id}"></div>
               <div class="remove"></div>
             </div>
           </div>
@@ -28,8 +27,32 @@ define('render',['jquery','ajax'],function($,_ajax){
       }
     };
 
+    let _reload = (data) => {
+      let config = {
+        parent: '.write'
+      };
+      $(config.parent).html();
+      for(var i in data){
+        let html = `
+          <div class="hobbies">
+            <div>
+            <strong>${data[i].hobbie}</strong>
+            <span>${data[i].hobbie_type}</span>
+            <i>${data[i]._id}</i>
+            </div>
+            <div>
+              <div class="update" id="${data[i]._id}"></div>
+              <div class="remove"></div>
+            </div>
+          </div>
+        `;
+        $(config.parent).append(html);
+      }
+    }
+
     return {
-      show: _getting
+      show: _getting,
+      reload: _reload
     }
 
   })();

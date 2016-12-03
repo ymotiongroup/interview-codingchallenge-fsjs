@@ -1,8 +1,8 @@
 "use strict";
 
-define("events",["jquery"], function($){
+define("events",["jquery","ajax"], function($,_ajax){
 
-  var events = (function() {
+  var events = (() => {
 
     let  toggleClass = function(parent,event,child,style,second,child_2) {
           var config = {
@@ -20,10 +20,26 @@ define("events",["jquery"], function($){
                   :
                   console.log('not allowed')
             });
-        }
+        };
+
+        let update = () => {
+          let config = {
+            parent: '.update',
+            event: 'click'
+          }
+          $('.write').find('div').length === 0 ?
+            setTimeout(function(){
+              $(config.parent).on(config.event, function(){
+                  _ajax.update($(this).attr('id'))
+              })
+            },1500)
+            :
+            console.log('null')
+        };
 
         return {
-          toggleClass: toggleClass
+          toggleClass: toggleClass,
+          update: update
         }
   })();
 
